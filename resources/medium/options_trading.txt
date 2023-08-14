@@ -1,0 +1,51 @@
+In these recent days, you might have surely heard about something called option trading. So, you might be wondering what are options tradings, right? The new boom of trading/investing has made options brokers promoting all the strategies of trading. It’s a way by which you can trade the stocks or index without actually paying the full price. However, options trading is not as simplified as it sounds. You will know everything about call options with this article.
+
+What is Option Trading?
+Options meaning is that it will give the buyer the right to buy the underlying stocks or assets without actually paying the full price. It’s a contract by which you can make the trade.
+
+Contracts would have an expiry date. You can buy the options of stocks at strike prices and then sell them before the contracts expire. If the contract will expire, you will lose the money. Therefore, this trading strategy is a bit risky. The person for whom the time value is important should pay more focus here.
+
+Let’s see an example before we know more about it.
+
+Example of Options Trading
+Let’s say, there is a market registered company’s stock known as XYZ. The stock is trading at $100. Now, if you are bullish on this stock and you are sure that the stock will go up to $200 in the next 2 months, you can buy the call option here.
+
+Now, assume there are call options of $200 trading at just $5. $200 is called the strike price and the $5 is the price you are paying for the call option. In Option trading, it’s called the premium. Like we mentioned earlier, each option contract can only last for a fixed time. So, let’s assume that the contract has an expiry date of 3 months. One may also consider going for more/less time.
+
+
+You can buy 20 such options. It will cost you $5 x 20 which is $100 which is equal to the stock price, right?
+
+Now, recall what we said earlier? What are the options trading? It’s the contract of any underlying asset. Here, the stock XYZ is the underlying asset.
+
+So, if the stock price will be in green, the value of the option also increases. Now, if the stock crosses $250 in the next 3 months, you will make a decent profit here.
+
+What was the strike price? If you remember, it was $200.
+
+And, now, what is the current market price of the stock which is the asset underlying? $50.
+
+So, the difference is $250–200=$50. You paid $5 for the premium. So, your profit would be $45.
+
+Buying/Selling the Options
+People prefer this because the capital needed is less and the returns earned are more.
+
+The good thing here is that even the option’s premium will increase. So, if the stock price increases a bit and you don’t think that it will cross the given strike price within the given time, you can sell it. You might make a profit or you could also make a loss.
+
+If the stock does not move, you could also make a loss. It’s called buyer exercises. Some people get the call options for buyers exercised only.
+
+The main thing is that you will make to decide before the expiry date comes. So, keep an eye on the expiration dates.
+
+Now, you can’t always be bullish on the stock, right? Sometimes, you are bearish too. In that case, you can buy the put options.
+
+Call/Put Options
+When it comes to options trading, there are two main things that you need to keep an eye on. It’s called call and put.
+
+To make it extremely simple, call means that you are bullish on the option, and put means that you are bearish on the options. Please note that when we say “Options”, we mean the underlying stock.
+
+In Call options, you can only make a profit if the stock price goes up. In the same way, the putting options will allow you to make a profit if the stock price goes down. The main pivot point is the strike price.
+
+For instance, if you take the call option for a $100 strike price, if the stock moves above $100, it’s considered bullish. The same goes for put options. If the stock goes below the strike price, you will make a profit.
+
+Not to mention, you can buy or sell both of these. So, you can even sell call option if you want. It’s called short selling. It’s similar to stock shorting. If you are doing this, you will have to know your risk appetite and set a proper stop loss to minimize the risk. You need to know how does options trading work before you place a trade.
+
+Final Words
+To conclude, these were all the things you need to know about Option trading. For trading options, people use different trading strategies (option strategies). People often go with the call spreading technique where they buy one call option at a strike price and sell one call option with a higher strike price. They monitor the trade and then cancel one trade depending on how it’s performing. There are various strategies that one can go with. Options trading for beginner should be at low capital to avoid losses. You can use options calculator for the same.

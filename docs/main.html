@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>main.py</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>main.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <p>Import required langchain packages</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">langchain.document_loaders</span> <span class="kn">import</span> <span class="n">TextLoader</span>
+<span class="kn">from</span> <span class="nn">langchain.text_splitter</span> <span class="kn">import</span> <span class="n">CharacterTextSplitter</span>
+<span class="kn">from</span> <span class="nn">langchain.embeddings.openai</span> <span class="kn">import</span> <span class="n">OpenAIEmbeddings</span>
+<span class="kn">from</span> <span class="nn">langchain.vectorstores.pinecone</span> <span class="kn">import</span> <span class="n">Pinecone</span>
+<span class="kn">import</span> <span class="nn">pinecone</span>
+<span class="kn">from</span> <span class="nn">langchain.chains</span> <span class="kn">import</span> <span class="n">RetrievalQA</span>
+<span class="kn">from</span> <span class="nn">langchain.llms</span> <span class="kn">import</span> <span class="n">OpenAI</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <p>Initialize vector store. A vector store takes input for LLM embeddings in the form of vector array 
+and creates a vector space using prompts and context.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">pinecone</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;picone_api_key&quot;</span><span class="p">),</span>
+    <span class="n">environment</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;picone_environment&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p>LLM text loader can load the content from HTML, markdown, JSON, PDF and CSV.
+We are loading <strong>Options Trading blogs</strong> from medium as a contextual data.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">loader</span> <span class="o">=</span> <span class="n">TextLoader</span><span class="p">(</span><span class="s2">&quot;resources/medium/options_trading.txt&quot;</span><span class="p">)</span>
+    <span class="n">document</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <p>CharacterTextSplitter is the simplest method. This splits based on characters (by default &ldquo;\n\n&rdquo;) 
+and measure chunk length by number of characters.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">text_splitter</span> <span class="o">=</span> <span class="n">CharacterTextSplitter</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">texts</span> <span class="o">=</span> <span class="n">text_splitter</span><span class="o">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">texts</span><span class="p">))</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      <p>The Embeddings class is a class designed for interfacing with text embedding models. 
+There are lots of embedding model providers (OpenAI, Cohere, Hugging Face, etc) - this class is designed 
+to provide a standard interface for all of them.</p>
+<p>Embeddings create a vector representation of a piece of text.
+It means we can think about text in the vector space, and do things like semantic search where we look for 
+pieces of text that are most similar in the vector space.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">OpenAIEmbeddings</span><span class="p">()</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <p>One of the most common ways to store and search over unstructured data is to embed it and 
+store the resulting embedding vectors, and then at query time to embed the unstructured query 
+and retrieve the embedding vectors that are &lsquo;most similar&rsquo; to the embedded query.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">docsearch</span> <span class="o">=</span> <span class="n">Pinecone</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">,</span> <span class="n">index_name</span><span class="o">=</span><span class="s2">&quot;my-wiki-index&quot;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      <p>Question answering over an index. You can easily specify different chain types to load and use in the 
+RetrievalQA chain. There are two ways to load different chain types: <strong>from_chain_type</strong> &amp; <strong>map_reduce</strong>.
+You can specify the chain type argument in the <strong>from_chain_type</strong> method. 
+This allows you to pass in the name of the chain type you want to use.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">qa</span> <span class="o">=</span> <span class="n">RetrievalQA</span><span class="o">.</span><span class="n">from_chain_type</span><span class="p">(</span>
+        <span class="n">llm</span><span class="o">=</span><span class="n">OpenAI</span><span class="p">(),</span> <span class="n">chain_type</span><span class="o">=</span><span class="s2">&quot;stuff&quot;</span><span class="p">,</span> <span class="n">retriever</span><span class="o">=</span><span class="n">docsearch</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">()</span>
+    <span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;What are call and options options? Give me 2 points answer for a begginner&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">qa</span><span class="p">({</span><span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">})</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>
